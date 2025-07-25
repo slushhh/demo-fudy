@@ -56,7 +56,14 @@ const SignInDialog = (props: Props) => {
         setOpen(false)
       }
     } catch (error) {
-      // Do nothing, it will fallback to error boundary
+      user.openNotification(
+        'Error',
+        'Your request could not be completed. Please try again later.',
+        'error',
+      )
+
+      setConfirmLoading(false)
+      console.log(error)
     }
   }
 
