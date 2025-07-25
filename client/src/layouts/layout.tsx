@@ -53,15 +53,17 @@ const AppLayout = () => {
         if (data.access_token) {
           try {
             const req = await api.validateToken({ signal })
+
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             req.status === 401 ? clearUser() : setUser(data)
           } catch (error) {
-            // Do nothing, it will fallback to error boundary
+            console.log(error)
           }
         }
       })()
     }
 
-    ;() => controller.abort()
+    return () => controller.abort()
   }, [])
 
   /**

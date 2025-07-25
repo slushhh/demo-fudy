@@ -45,14 +45,14 @@ const Profile = () => {
             setUserInfo(data)
           }
         } catch (error) {
-          // Do nothing, it will fallback to error boundary
+          console.log(error)
         }
       })()
     } else {
       navigate(Routes.Root)
     }
 
-    ;() => controller.abort()
+    return () => controller.abort()
   }, [user])
 
   return (
