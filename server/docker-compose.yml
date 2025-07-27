@@ -1,4 +1,3 @@
-version: '3'
 services:
   db:
     image: postgres
@@ -8,6 +7,8 @@ services:
       - 5432:5432
     env_file:
       - .env
+    volumes:
+      - data:/var/lib/postgresql/data
 
   adminer:
     image: adminer
@@ -15,3 +16,10 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+volumes:
+  data:
+    name: 'fudy-data'
+    labels:
+      eu.fudy.project-name: 'Fudy'
+      eu.fudy.description: 'Fudy data volume'

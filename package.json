@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "app": "concurrently -k -n 'database,client,server' -c '#7f00ff,#ff0000,#ff8c00' 'npm run database' 'npm run client' 'npm run server'",
+    "database": "docker compose -f server/docker-compose.yml up",
+    "client": "wait-on tcp:5500 && npm --prefix client run dev",
+    "server": "wait-on tcp:5432 && npm --prefix server run start:dev"
   },
   "keywords": [],
   "author": "",
