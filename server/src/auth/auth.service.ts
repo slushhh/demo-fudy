@@ -50,11 +50,11 @@ export class AuthService {
    * Returns data about the requested user
    * if such a user is found in the database
    */
-  async getUser(headers: any) {
+  async getUser(headers: Record<string, string>) {
     const userId = headers.userid
 
     if (userId) {
-      const user = await this.usersRepo.findOne({ where: { id: userId } })
+      const user = await this.usersRepo.findOne({ where: { id: +userId } })
 
       if (user) {
         return {
@@ -70,7 +70,7 @@ export class AuthService {
   /**
    * Validates the provided token
    */
-  async validateToken(headers: any) {
+  async validateToken(headers: Record<string, string>) {
     const [type, token] = headers.authorization?.split(' ') ?? []
 
     if (type === 'Bearer' && token) {
@@ -78,7 +78,7 @@ export class AuthService {
         await this.jwtService.verifyAsync(token, {
           secret: process.env.JWT_SECRET,
         })
-      } catch (error) {
+      } catch {
         throw new UnauthorizedException()
       }
     }

@@ -8,15 +8,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common'
-import {
-  ApiBearerAuth,
-  ApiBody,
-  ApiHeader,
-  ApiOperation,
-  ApiParam,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger'
+import { ApiTags } from '@nestjs/swagger'
 import { AuthService } from './auth.service'
 import { UserDto } from 'src/user/user.dto'
 import { AuthGuard } from './auth.guard'
@@ -49,7 +41,7 @@ export class AuthController {
   @Post('token')
   @HttpCode(HttpStatus.OK)
   @ValidateTokenApiDocs()
-  validateToken(@Headers() headers: any) {
+  validateToken(@Headers() headers: Record<string, string>) {
     return this.authService.validateToken(headers)
   }
 
@@ -64,7 +56,7 @@ export class AuthController {
   @Get('me')
   @UseGuards(AuthGuard)
   @GetUserApiDocs()
-  getUser(@Headers() headers: any) {
+  getUser(@Headers() headers: Record<string, string>) {
     return this.authService.getUser(headers)
   }
 }
