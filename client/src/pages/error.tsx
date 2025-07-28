@@ -11,7 +11,7 @@ import { Routes } from '@/data/routes'
  * and everything else
  */
 const Error = () => {
-  const error = useRouteError()
+  const error = useRouteError() as RouteError
 
   const backHomeButton = (
     <Link to={Routes.Root}>

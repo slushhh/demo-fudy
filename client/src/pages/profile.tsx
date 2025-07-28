@@ -11,7 +11,7 @@ import { Routes } from '@/data/routes'
  */
 const Profile = () => {
   const user = useContext(UserContext)
-  const [userInfo, setUserInfo] = useState(null)
+  const [userInfo, setUserInfo] = useState<User | null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {

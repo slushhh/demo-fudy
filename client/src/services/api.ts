@@ -1,9 +1,9 @@
 type RequestOptions = {
   signal?: AbortSignal
-  body?: any
+  body?: BodyInit | null | undefined
   method?: RequestInit['method']
   id?: string | number
-  headers?: Record<string, any>
+  headers?: HeadersInit | undefined
 }
 
 const APIPort = import.meta.env.VITE_API_PORT
@@ -13,12 +13,13 @@ const APIPort = import.meta.env.VITE_API_PORT
  */
 const Request = (url: string, options: RequestOptions): Promise<Response> => {
   let { body } = options
+  let headers = { ...options.headers }
+
   const { signal, method } = options
-  const headers: Record<string, any> = { ...options.headers }
   const userData = localStorage.getItem('fudy')
 
   if (method === 'POST') {
-    headers['Content-Type'] = 'application/json'
+    headers = { ...headers, ...{ 'Content-Type': 'application/json' } }
     body = JSON.stringify(body)
   }
 
@@ -27,7 +28,7 @@ const Request = (url: string, options: RequestOptions): Promise<Response> => {
     const token = json.access_token
 
     if (token) {
-      headers['Authorization'] = 'Bearer ' + token
+      headers = { ...headers, ...{ Authorization: 'Bearer ' + token } }
     }
   }
 

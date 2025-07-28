@@ -7,7 +7,7 @@ export type UserContext = {
   access_token: string
   id: number | null
   email: string
-  setUser: (data: object) => void
+  setUser: (data: User) => void
   clearUser: () => void
   isAuth: boolean
   openNotification: (
@@ -33,7 +33,10 @@ export const userContext: UserContext = {
 /**
  * User context reducer
  */
-export const userReducer = (_user: any, action: Record<string, any>) => {
+export const userReducer = (
+  _user: User,
+  action: { type: 'set' | 'clear'; payload?: User },
+) => {
   switch (action.type) {
     case 'set': {
       return { ...action.payload }

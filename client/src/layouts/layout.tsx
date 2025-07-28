@@ -118,7 +118,6 @@ const AppLayout = () => {
    * it is available to the entire app
    */
   const setUser = (data: User) => {
-    console.log('Data', data)
     dispatch({ type: 'set', payload: data })
     localStorage.setItem('fudy', JSON.stringify(data))
   }
