@@ -33,7 +33,7 @@ export const userContext: UserContext = {
 /**
  * User context reducer
  */
-export const userReducer = (user: any, action: Record<string, any>) => {
+export const userReducer = (_user: any, action: Record<string, any>) => {
   switch (action.type) {
     case 'set': {
       return { ...action.payload }

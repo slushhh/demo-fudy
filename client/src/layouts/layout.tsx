@@ -10,7 +10,7 @@ import { Routes } from '@/data/routes'
 import { UserContext, userContext, userReducer } from '@/context'
 import * as api from '@/services/api'
 
-import type { MouseEvent } from 'react'
+import type { MouseEvent, RefObject } from 'react'
 
 const { Header, Footer, Content } = Layout
 
@@ -23,10 +23,14 @@ const AppLayout = () => {
   const [userSettings, dispatch] = useReducer(userReducer, userContext)
   const isAuth = !!userSettings.access_token
 
-  const notificationParams = useRef({
+  const notificationParams: RefObject<{
+    title: string
+    message: string
+    kind: 'success' | 'info' | 'error'
+  }> = useRef({
     title: '',
     message: '',
-    kind: '',
+    kind: 'info',
   })
 
   const signInType = useRef<'signin' | 'signup'>('signin')
@@ -113,7 +117,8 @@ const AppLayout = () => {
    * Adds user data to the context so that
    * it is available to the entire app
    */
-  const setUser = (data: any) => {
+  const setUser = (data: User) => {
+    console.log('Data', data)
     dispatch({ type: 'set', payload: data })
     localStorage.setItem('fudy', JSON.stringify(data))
   }

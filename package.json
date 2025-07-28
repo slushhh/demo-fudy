@@ -8,7 +8,10 @@
     "database": "docker compose -f server/docker-compose.yml up",
     "client": "wait-on tcp:5500 && npm --prefix client run dev",
     "server": "wait-on tcp:5432 && npm --prefix server run start:dev",
-    "bootstrap": "npm i && npm --prefix client i && npm --prefix server i"
+    "bootstrap": "npm i && npm --prefix client i && npm --prefix server i",
+    "update:manager": "npx npm-check-updates --interactive --format group",
+    "update:client": "npx npm-check-updates --interactive --cwd client --format group",
+    "update:server": "npx npm-check-updates --interactive --cwd server --format group"
   },
   "keywords": [],
   "author": "",
