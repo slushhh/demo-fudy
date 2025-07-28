@@ -57,7 +57,7 @@ which can be changed in the corresponding files
 - view user information (the page is available only to the logged in user), i.e. access control to protected sections of the app
 - displaying necessary notifications (for better UX and feedback on how the app works)
 - handling of various server responses (for better UX and feedback on how the app works)
-- session expiration
+- session expiration. Session token lifetime is set to 5 minutes
 - integrated and configured a system for updating packages of different parts of the application
 
 #### The backend part, respectively, will implement the same functionality.
