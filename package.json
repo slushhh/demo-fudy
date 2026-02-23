@@ -12,7 +12,7 @@
     "database": "docker compose -f server/docker-compose.yml up",
     "client": "wait-on tcp:5500 && npm run dev --workspace client",
     "server": "wait-on tcp:5432 && npm run start:dev --workspace server",
-    "update": "npx npm-check-updates --interactive --format group",
+    "update:root": "npx npm-check-updates --interactive --format group",
     "update:client": "npx npm-check-updates --interactive --cwd client --format group",
     "update:server": "npx npm-check-updates --interactive --cwd server --format group"
   },
