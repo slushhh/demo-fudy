@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres
+    image: postgres:17
     container_name: fudy-db
     restart: always
     ports:
