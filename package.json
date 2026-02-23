@@ -20,8 +20,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^9.2.0",
-    "npm-check-updates": "^18.0.2",
-    "wait-on": "^8.0.4"
+    "concurrently": "^9.2.1",
+    "npm-check-updates": "^19.4.1",
+    "wait-on": "^9.0.4"
   }
 }
